@@ -1,0 +1,18 @@
+.supplier {
+  padding: 24px;
+  font-size: 24px;
+}
+
+.supplier__Rows {
+  display: flex;
+}
+
+.supplier__ColImg
+.supplier__Col{
+  flex: 1;
+}
+
+.supplier__ColImg{
+  max-width: 50px;
+  margin-right: 25px;
+}
