@@ -1,10 +1,12 @@
 .supplier {
-  padding: 24px;
+  padding: 24px;padding-left: 140px;
   font-size: 24px;
+  width:340px;
+  display: inline-block;
 }
 
 .supplier__Rows {
-  display: flex;
+  display: inline-block
 }
 
 .supplier__ColImg
@@ -13,6 +15,47 @@
 }
 
 .supplier__ColImg{
-  max-width: 50px;
+  max-width: 100px;
   margin-right: 25px;
+}
+
+.header_ul_nav{
+list-style: none;
+display: inline-block;
+}
+.header_li_nav{
+  font-size: 22px;
+  color: black; 
+  margin-left: 10px; 
+  padding-left: 47px;
+}
+.footer{
+  height: auto;
+  background-color: rgb(247, 247, 247);
+  margin-bottom: -16px;
+  margin-top: 40px;
+}
+.footer_p{
+  text-align: center;
+}
+.homeLink{
+  text-decoration:none;
+  color:black;
+  display: inline-block
+}
+.imgBG{
+  width:100%;
+}
+.homeTitle{
+  text-align: center;
+  margin-top: 20px;
+}
+.abt_body{
+  margin-top: 40px;
+  margin-left: 40px;
+}
+.img_about{
+  width:35%;
+  height: 12%;
+  margin-left: 30%;
 }

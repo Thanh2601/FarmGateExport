@@ -2,7 +2,6 @@
   /* .supplier {
     float: left;
   } */
-  
   .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -52,8 +51,8 @@
     background-repeat: no-repeat;
     position: absolute;
     bottom: calc(100% - 300px);
-    width: 100%;
-    height: 300px;
+    width: 50%;
+    height: 150px;
     -webkit-transition: ease all .3s;
     transition: ease all .3s;
   }
@@ -81,4 +80,7 @@
     font-size: 14px;
     text-align: center;
   }
-  
+.img_sup{
+  width:15%;
+  margin-left: 2%;
+}

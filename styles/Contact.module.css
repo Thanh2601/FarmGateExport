@@ -1,0 +1,41 @@
+.bodyContact{
+    margin-left: 30%;
+    margin-top:3%;
+}
+.inp_contact, .txta_contact {
+    width:56%;
+    margin-bottom: 11px;
+    line-height: 29px;
+    text-transform: initial;
+    letter-spacing: initial;
+    position: relative;
+    z-index: 20;
+    display: block;
+    min-height: 36px;
+    padding: 5px 12px;
+    border: 1px solid ;
+}
+.btn_contact{
+    background-color: rgb(16, 95, 213);
+    color: white;
+    margin-left: 22%;
+    margin-top: 3%;
+    width:100px;
+    height: 42px;
+    border-radius: 18px;
+    border: 1px solid;
+    font-size:14px;
+}
+.txta_contact{
+    height: 130px;
+}
+.name_contact{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 11px;
+    width: 23%;
+    line-height: 29px;
+}
+.lstName_contact{
+    margin-left: 40%;
+}
