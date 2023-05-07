@@ -1,7 +1,9 @@
 import Head from 'next/head'
-
+import styles from "../../styles/Supplier.module.css"
 // import suppliers from '../../suppliers.json'
 import { fromImageToUrl, API_URL } from '../../utils/urls'
+import Header from '../partials/header'
+import Footer from '../partials/footer'
 //  const supplier = suppliers.data[0]
 
 const Supplier = ({ supplier }) => {
@@ -16,16 +18,19 @@ const Supplier = ({ supplier }) => {
                     <meta name="description" content={supplier.attributes.meta_description}></meta>
                 }
             </Head>
+            <Header />
+            <div>
+            <img className={styles.img_sup} src={fromImageToUrl(supplier.attributes.image.data[0])} />
             <h3>{supplier.attributes.name}</h3>
-            <img src={fromImageToUrl(supplier.attributes.image.data[0])} />
-            <h3>{supplier.attributes.name}</h3>
-            <p>{supplier.id}</p>
+            </div>
+            <div>
+                <p>
+                    {supplier.attributes.content}
+                </p>
+            </div>
 
-            <p>
-                {supplier.attributes.content}
-            </p>
+            <Footer />
         </div>
-
     )
 }
 
