@@ -7,23 +7,28 @@ import { fromImageToUrl, API_URL } from '../../utils/urls'
 
 function Supplier( {suppliers} ) {
   return (
-    <div className={styles.container}>
-    {suppliers.data && suppliers.data.map((supplier) => (
-        <div key={supplier.attributes.name} className={styles.supplier}>
-          <Link href={`/suppliers/${supplier.attributes.slug}`}>
-            {/* <a> */}
-                <div className={styles.row}>
-                    <Card
-                    name={supplier.attributes.name}
-                    bg_img={fromImageToUrl(supplier.attributes.image.data[0])}
-                    content={supplier.attributes.content}
-                    />
-                </div>
-            {/* </a> */}
-          </Link>  
-        </div>
-      ))}
-  </div>
+    <div>
+      <img src='/Supplier-BG.jpg'></img>
+      <h4 className={styles.supTitle}>SUPPLIERS</h4>
+
+      <div className={styles.container}>
+      {suppliers.data && suppliers.data.map((supplier) => (
+          <div key={supplier.attributes.name} className={styles.supplier}>
+            <Link href={`/suppliers/${supplier.attributes.slug}`}>
+              {/* <a> */}
+                  <div className={styles.row}>
+                      <Card
+                      name={supplier.attributes.name}
+                      bg_img={fromImageToUrl(supplier.attributes.image.data[0])}
+                      content={supplier.attributes.content}
+                      />
+                  </div>
+              {/* </a> */}
+            </Link>  
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 

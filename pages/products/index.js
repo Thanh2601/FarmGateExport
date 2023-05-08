@@ -18,7 +18,7 @@ export default function Product({products}) {
       {/* <a> */}
         <div className={styles.supplier__Rows}>
           <div className={styles.supplier__ColImg}>
-            <img src={fromImageToUrl(product.attributes.image.data)} />
+            <img src={fromImageToUrl(product.attributes.image.data[0])} />
           </div>
           <div className={styles.supplier__Col}>
             <h5> {product.attributes.name}</h5>

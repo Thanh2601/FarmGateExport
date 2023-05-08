@@ -15,7 +15,10 @@ const Header = () => {
     <ul class="navbar-nav mr-auto" className={styles.header_ul_nav}>
      
       <li className={styles.header_li_nav} class="nav-item">
-        <Link class="nav-link" href="./products/products">Products</Link>
+        <Link class="nav-link" href="/suppliers">Suppliers</Link>
+      </li>
+      <li className={styles.header_li_nav} class="nav-item">
+        <Link class="nav-link" href="/products">Products</Link>
       </li>
       <li className={styles.header_li_nav} class="nav-item active" >
         <Link class="nav-link" href="/about">About Us</Link>

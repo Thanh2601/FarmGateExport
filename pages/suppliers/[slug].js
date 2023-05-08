@@ -18,7 +18,6 @@ const Supplier = ({ supplier }) => {
                     <meta name="description" content={supplier.attributes.meta_description}></meta>
                 }
             </Head>
-            <Header />
             <div>
             <img className={styles.img_sup} src={fromImageToUrl(supplier.attributes.image.data[0])} />
             <h3>{supplier.attributes.name}</h3>
@@ -27,9 +26,12 @@ const Supplier = ({ supplier }) => {
                 <p>
                     {supplier.attributes.content}
                 </p>
+                {supplier.attributes.products.data && supplier.attributes.products.data.map((product) => (
+                    <div key={product.name}>
+                        <p>{product.id} {product.attributes.name}</p>
+                    </div>
+                ))}
             </div>
-
-            <Footer />
         </div>
     )
 }
