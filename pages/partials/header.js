@@ -14,6 +14,9 @@ const Header = () => {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" className={styles.header_ul_nav}>
      
+    <li className={styles.header_li_nav} class="nav-item">
+        <Link class="nav-link" href="/">Home</Link>
+      </li>
       <li className={styles.header_li_nav} class="nav-item">
         <Link class="nav-link" href="/suppliers">Suppliers</Link>
       </li>
@@ -44,6 +47,7 @@ const Header = () => {
   </div>
 </nav>
 </div>
+
 )
 }
 export default Header

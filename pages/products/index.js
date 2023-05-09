@@ -9,8 +9,8 @@ export default function Product({products}) {
 
     return(
         <div>
-            <img src='/backgroundProduct.png'></img>
-             <h4 className={styles.homeTitle}>PRODUCTS</h4>
+          <img src='/Supplier-BG.jpg'></img>
+          <h4 className={styles.homeTitle}>PRODUCTS</h4>
 
 {products.data && products.data.map((product) => (
   <div key={product.attributes.id} className={styles.supplier}>

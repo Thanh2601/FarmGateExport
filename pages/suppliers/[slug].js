@@ -4,6 +4,8 @@ import styles from "../../styles/Supplier.module.css"
 import { fromImageToUrl, API_URL } from '../../utils/urls'
 import Header from '../partials/header'
 import Footer from '../partials/footer'
+import Card from "../../components/product/ProductCard.js"
+import Link from 'next/link'
 //  const supplier = suppliers.data[0]
 
 const Supplier = ({ supplier }) => {
@@ -19,25 +21,35 @@ const Supplier = ({ supplier }) => {
                 }
             </Head>
             <div>
-            <img className={styles.img_sup} src={fromImageToUrl(supplier.attributes.image.data[0])} />
-            <h3>{supplier.attributes.name}</h3>
+            <img className={styles.supImg} src={fromImageToUrl(supplier.attributes.image.data[0])} />
+            <h3 className={styles.supName}>{supplier.attributes.name}</h3>
             </div>
-            <div>
+            <div className={styles.supContent}>
                 <p>
                     {supplier.attributes.content}
                 </p>
+            </div>
+            <div className={styles.container}>
                 {supplier.attributes.products.data && supplier.attributes.products.data.map((product) => (
-                    <div key={product.name}>
-                        <p>{product.id} {product.attributes.name}</p>
-                    </div>
-                ))}
+                        <div key={product.name} className={styles.container}>
+                            <Link href={`/products/${product.attributes.slug}`} className={styles.supLink}>
+                                <div className={styles.row}>
+                                    <Card
+                                    name={product.attributes.name}
+                                    bg_img={fromImageToUrl(product.attributes.image.data[0])}
+                                    content=""
+                                    />
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
             </div>
         </div>
     )
 }
 
 export async function getStaticProps({ params: { slug } }) {
-    const supplier_res = await fetch(`${API_URL}/api/suppliers?populate=*&filters[slug][$eq]=${slug}`)
+    const supplier_res = await fetch(`${API_URL}/api/suppliers?populate[0]=image&populate[1]=products.image&filters[slug][$eq]=${slug}`)
     const found = await supplier_res.json()
 
     return {
@@ -49,7 +61,7 @@ export async function getStaticProps({ params: { slug } }) {
 
 export async function getStaticPaths() {
     //Retrieve all the possible paths
-    const supplier_res = await fetch(`${API_URL}/api/suppliers?populate=*`)
+    const supplier_res = await fetch(`${API_URL}/api/suppliers?populate[0]=image&populate[1]=products.image`)
     const suppliers = await supplier_res.json()
     //Return them to NextJS context
     return {
