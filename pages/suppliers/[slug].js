@@ -6,9 +6,30 @@ import Header from '../partials/header'
 import Footer from '../partials/footer'
 import Card from "../../components/product/ProductCard.js"
 import Link from 'next/link'
-//  const supplier = suppliers.data[0]
+import { useRouter } from 'next/router'
+import ReactMarkdown from "react-markdown";
+
 
 const Supplier = ({ supplier }) => {
+
+    const router = useRouter();
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        // var globalSup = supplier.attributes.name
+        // // window.globalSup = globalSup
+        // console.log(globalSup)
+        // console.log(supName)
+        router.push({
+            pathname: '/contact',
+            query: {to: supplier.attributes.name} 
+        })
+        Supplier.getInitialProps = ({query: {to}}) => {
+            return to
+        }
+        
+    }
+
     return (
         <div>
             <Head>
@@ -25,13 +46,15 @@ const Supplier = ({ supplier }) => {
             <h3 className={styles.supName}>{supplier.attributes.name}</h3>
             </div>
             <div className={styles.supContent}>
-                <p>
+            <ReactMarkdown children={supplier.attributes.content}/>
+                {/* <p>
+                    
                     {supplier.attributes.content}
-                </p>
+                </p> */}
             </div>
             <div className={styles.container}>
                 {supplier.attributes.products.data && supplier.attributes.products.data.map((product) => (
-                        <div key={product.name} className={styles.container}>
+                        <div key={product.id} className={styles.container}>
                             <Link href={`/products/${product.attributes.slug}`} className={styles.supLink}>
                                 <div className={styles.row}>
                                     <Card
@@ -44,9 +67,13 @@ const Supplier = ({ supplier }) => {
                         </div>
                     ))}
             </div>
+            <button id="contact" onClick={handleClick}> Contact </button>
         </div>
     )
 }
+
+
+
 
 export async function getStaticProps({ params: { slug } }) {
     const supplier_res = await fetch(`${API_URL}/api/suppliers?populate[0]=image&populate[1]=products.image&filters[slug][$eq]=${slug}`)

@@ -2,9 +2,9 @@ import Head from 'next/head'
 import styles from "../../styles/ProductV.module.css"
 // import suppliers from '../../suppliers.json'
 import { fromImageToUrl, API_URL } from '../../utils/urls'
-
-//  const supplier = suppliers.data[0]
-
+import Link from 'next/link'
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 const Product = ({ product }) => {
     return (
         <div>
@@ -14,42 +14,44 @@ const Product = ({ product }) => {
                 {product.attributes.meta_title &&
                     <title>{product.attributes.meta_title}</title>
                 }
-
                 {product.attributes.meta_description &&
                     <meta name="description" content={product.attributes.meta_description}></meta>
                 }
-
             </Head>
+            <h4 className={styles.pro_detail}>Product Detail</h4>
             <section>
                 <div className={styles.container_slug}>
                     <div className={styles.flex}>
                         <div className={styles.left}>
                             <img className={styles.main_image} src={fromImageToUrl(product.attributes.image.data[0])} />
-                            {/* <div className={styles.option}>
-                                <div className={styles.flex}>
-                                <img className={styles.img_slug} src="image/p1.jpg" onclick="img('image/p1.jpg')" />
-                                <img className={styles.img_slug} src="image/p2.jpg" onclick="img('image/p2.jpg')" />
-                                <img className={styles.img_slug} src="image/p6.jpg" onclick="img('image/p6.jpg')" />
-                                </div>
-                            </div> */}
                         </div>
                         <div className={styles.right}>
-                        <h3>{product.attributes.name}</h3>
-                            <p>    {product.attributes.content}</p>
+                            <h3>{product.attributes.name}</h3>
+                            {/* ReactMarkdown để format HMTL , rehypeRaw hỗ trợ ReactMarkdown */}
+                            <p><ReactMarkdown children={product.attributes.content} rehypePlugins={[rehypeRaw]} /></p>
                         </div>
                     </div>
                     </div>
             </section>
+            <div >
 
+                <h4 className={styles.sup_name}>Supplier</h4>
+                <div className={styles.row}>
+                    <Link className={styles.sup_link} href={`/suppliers/${product.attributes.supplier.data.attributes.slug}`} >
+                        <div>
+                            <img className={styles.sup_img} src={fromImageToUrl(product.attributes.supplier.data.attributes.image.data[0])} />
+                            <h4 className={styles.sup_name}>{product.attributes.supplier.data.attributes.name}</h4>
+                        </div>
+                    </Link>
+                </div>
             </div>
-            
+        </div>
     )
 }
-
 export async function getStaticProps({ params: { slug } }) {
-    const product_res = await fetch(`${API_URL}/api/products?populate=*&filters[slug][$eq]=${slug}`)
+    const product_res = await fetch(`${API_URL}/api/products?populate[0]=image&populate[1]=supplier.image&filters[slug][$eq]=${slug}`)
     const found = await product_res.json()
-
+    console.log('found', found)
     return {
         props: {
             product: found.data[0]
@@ -59,7 +61,7 @@ export async function getStaticProps({ params: { slug } }) {
 
 export async function getStaticPaths() {
     //Retrieve all the possible paths
-    const product_res = await fetch(`${API_URL}/api/products?populate=*`)
+    const product_res = await fetch(`${API_URL}/api/products?populate[0]=image&populate[1]=supplier.image`)
     const products = await product_res.json()
     //Return them to NextJS context
     return {

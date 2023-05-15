@@ -13,7 +13,7 @@ function Supplier( {suppliers} ) {
 
       <div className={styles.container}>
       {suppliers.data && suppliers.data.map((supplier) => (
-          <div key={supplier.attributes.name} className={styles.supplier}>
+          <div key={supplier.attributes.id} className={styles.supplier}>
             <Link href={`/suppliers/${supplier.attributes.slug}`} className={styles.supLink}>
               {/* <a> */}
                   <div className={styles.row}>
