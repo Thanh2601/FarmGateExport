@@ -2456,7 +2456,7 @@ react-bootstrap@^2.7.4:
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
-react-dom@^18.2.0, react-dom@>=16.14.0, react-dom@>=16.6.0, react-dom@18.2.0:
+react-dom@^18.2.0, react-dom@>=16, react-dom@>=16.14.0, react-dom@>=16.6.0, react-dom@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -2521,6 +2521,11 @@ react@*, "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", react@^18.2.0, "react@>= 16
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
+
+reactjs-popup@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/reactjs-popup/-/reactjs-popup-2.0.5.tgz"
+  integrity sha512-b5hv9a6aGsHEHXFAgPO5s1Jw1eSkopueyUVxQewGdLgqk2eW0IVXZrPRpHR629YcgIpC2oxtX8OOZ8a7bQJbxA==
 
 read-cache@^1.0.0:
   version "1.0.0"

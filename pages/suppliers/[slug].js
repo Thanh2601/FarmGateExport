@@ -30,6 +30,8 @@ const Supplier = ({ supplier }) => {
         
     }
 
+
+
     return (
         <div>
             <Head>
@@ -44,6 +46,40 @@ const Supplier = ({ supplier }) => {
             <div>
             <img className={styles.supImg} src={fromImageToUrl(supplier.attributes.image.data[0])} />
             <h3 className={styles.supName}>{supplier.attributes.name}</h3>
+            <div className={styles.attri}>
+                <div className={styles.t_block}>
+                    <h3 className={styles.title}>Farm location: </h3>
+                    <p className={styles.t_content}>{supplier.attributes.farmlocation}</p>
+                </div>
+                <h3 className={styles.title}>Production capacity: </h3>
+                <p>{supplier.attributes.production_cap}</p>
+                <h3 className={styles.title}>Certificates: </h3>
+                <div>
+                    {supplier.attributes.certificates.data && supplier.attributes.certificates.data.map((cer) => (
+                                <div key={cer.id} className={styles.cb_container}>
+                                    <div className={styles.checkbox}>
+                                        <input type="checkbox" id="checkbox" checked/>
+                                        <label for="checkbox"><span>{cer.attributes.name}</span></label>
+                                    </div>
+                                </div>
+                            ))}
+                </div>
+                </div>
+                <div className={styles.childattri}>
+                    <h3 className={styles.title}>Availability Season</h3>
+                    <div className={styles.chart}>
+                        {supplier.attributes.seasons.data && supplier.attributes.seasons.data.map((month) => (
+                                    <div key={month.id} className={styles.seasonchart}>
+                                        <li className={styles.season}>{month.attributes.name}</li>
+                                    </div>
+                                ))}
+                    </div>
+                    <h3 className={styles.title}>Services: </h3>
+                    <p>{supplier.attributes.services}</p>
+                    <h3 className={styles.title}>Ready for markets: </h3>
+                    <p>{supplier.attributes.markets}</p>
+                </div>
+                
             </div>
             <div className={styles.supContent}>
             <ReactMarkdown children={supplier.attributes.content}/>
@@ -67,7 +103,7 @@ const Supplier = ({ supplier }) => {
                         </div>
                     ))}
             </div>
-            <button id="contact" onClick={handleClick}> Contact </button>
+            <button className={styles.contact_btn} id="contact" onClick={handleClick}> Contact </button>
         </div>
     )
 }
@@ -76,7 +112,7 @@ const Supplier = ({ supplier }) => {
 
 
 export async function getStaticProps({ params: { slug } }) {
-    const supplier_res = await fetch(`${API_URL}/api/suppliers?populate[0]=image&populate[1]=products.image&filters[slug][$eq]=${slug}`)
+    const supplier_res = await fetch(`${API_URL}/api/suppliers?populate[certificates][populate]=*&populate[seasons][populate]=*&populate[image][populate]=*&populate[products][populate]=*&filters[slug][$eq]=${slug}`)
     const found = await supplier_res.json()
 
     return {

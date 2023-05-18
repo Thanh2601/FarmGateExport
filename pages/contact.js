@@ -3,6 +3,7 @@ import styles from '../styles/Contact.module.css'
 import { API_URL } from '../utils/urls'
 // import sup from '../pages/suppliers/[slug].js'
 import { useRouter } from 'next/router'
+import Popup from 'reactjs-popup'
 
 
 const handleSubmit = (e) => {
@@ -10,8 +11,7 @@ const handleSubmit = (e) => {
     const data = {
         data: {
             to: document.getElementById('to').value,
-            firstname: document.getElementById('firstname').value,
-            lastname: document.getElementById('lastname').value,
+            name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             tel: document.getElementById('phone').value,
             mess: document.getElementById('mess').value
@@ -25,9 +25,13 @@ const handleSubmit = (e) => {
             }
             })
             .then(function(response){ 
-                return alert("Sent!!!")})
+                return (
+                    <Popup>
+                        <button>Confirm</button>
+                    </Popup>
+                )})
             .then(res => (window.location.reload()))
-            .catch(error => console.error('Error:', error)); 
+            .catch(error => console.error('Error:', error.response.data)); 
 
 }
 
@@ -49,29 +53,20 @@ const Contact = () => {
                 <form>
                     <div id="to" value=""></div>
                     {/* <input id="to" className={styles.inp_contact} value="Adminstrator" type="hidden"></input> */}
-                    <div className={styles.name_contact}>
-                        <div>
-                    <h6>First Name</h6>
-                    <input id="firstname" placeholder="Enter First Name" />
-                    </div>
-                    <div className={styles.lstName_contact}>
-                    <h6>Last Name</h6>
-                    <input id="lastname" placeholder="Enter Last Name"></input>
-                    </div>
+                    <div>
+                    <h6>Full Name</h6>
+                    <input className={styles.inp_contact} id="name" placeholder="Enter Your Name" />
                     </div>
                     <h6>Email</h6>
                     <input id="email" className={styles.inp_contact} placeholder="Email"/>
                     <h6 for="phone">Phone Number:</h6>
-                    <select id="country-code" name="country-code">
-                        <option value="1">+84</option>
-                        <option value="86">+86</option>
-                        <option value="44">+44</option>
-                    </select>
-                    <input type="tel" id="phone" name="phone" placeholder="0123456789" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
+                    <input type="tel" className={styles.inp_contact} id="phone" name="phone" placeholder="0123456789" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
                     <h6>Write down your messenges</h6>
                     <textarea id="mess" className={styles.txta_contact} placeholder="Enter Messages" />
-    
-                    <button className={styles.btn_contact} type="submit" onClick={handleSubmit}>Send</button>
+                    <Popup trigger={<button className={styles.btn_contact} type="submit" onClick={handleSubmit}>Send</button>} position="right center">
+                        <div>Sent!!!</div>
+                        <button>Confirm</button>
+                    </Popup>
                 </form>
             </div>
         )
@@ -82,25 +77,14 @@ const Contact = () => {
                 <form>
                     <h6>To</h6>
                     <input id="to" className={styles.inp_contact} placeholder={to} value={to} disabled></input>
-                    <div className={styles.name_contact}>
-                        <div>
-                    <h6>First Name</h6>
-                    <input id="firstname" placeholder="Enter First Name" />
-                    </div>
-                    <div className={styles.lstName_contact}>
-                    <h6>Last Name</h6>
-                    <input id="lastname" placeholder="Enter Last Name"></input>
-                    </div>
+                    <div>
+                    <h6>Full Name</h6>
+                    <input className={styles.inp_contact} id="name" placeholder="Enter Your Name" />
                     </div>
                     <h6>Email</h6>
                     <input id="email" className={styles.inp_contact} placeholder="Email"/>
                     <h6 for="phone">Phone Number:</h6>
-                    <select id="country-code" name="country-code">
-                        <option value="1">+84</option>
-                        <option value="86">+86</option>
-                        <option value="44">+44</option>
-                    </select>
-                    <input type="tel" id="phone" name="phone" placeholder="0123456789" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
+                    <input type="tel" className={styles.inp_contact} id="phone" name="phone" placeholder="0123456789" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
                     <h6>Write down your messenges</h6>
                     <textarea id="mess" className={styles.txta_contact} placeholder="Enter Messages" />
     
