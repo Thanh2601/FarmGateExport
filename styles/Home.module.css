@@ -23,22 +23,43 @@
 .header_ul_nav{
 list-style: none;
 display: inline-block;
+color: black;
 }
+
 .header_li_nav{
   font-size: 22px;
   color: black; 
   margin-left: 10px; 
   padding-left: 47px;
+  text-decoration: none;  
 }
+
+
 .footer{
   height: auto;
   background-color: rgb(247, 247, 247);
   margin-bottom: -16px;
   margin-top: 40px;
 }
+.footer_inline{
+  display: flex;
+  flex-direction: row;
+}
+.footer_icon{
+  margin-top: 5px;
+  margin-right: 8px ;
+}
 .footer_p{
   text-align: center;
 }
+.footer_1{
+  width: 35%;
+  margin-left: 15%;
+}
+.footer_2{
+  margin-left: 5%;
+}
+
 .homeLink{
   text-decoration:none;
   color:black;
@@ -91,10 +112,11 @@ display: inline-block;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    -moz-border-radius: 15px; /*Firefox*/
+    -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
   }
 
   .supLink {
     text-decoration: none;
+    color: black;
   }
